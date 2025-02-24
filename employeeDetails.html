@@ -15,7 +15,7 @@
       <h1>Employee Details</h1>
     </header>
     <main class="container mt-4">
-      <section id="employeeDetails"></section>
+      <div class="row" id="row"></div>
     </main>
 
     <script>
@@ -59,25 +59,45 @@
       }
 
       // display the details on the view
-      let employeeDetailsElement = document.getElementById("employeeDetails");
-      if (employee) {
-        employeeDetailsElement.innerHTML = `
-            <div class="card">
-                <div class="card-body">
-                   
-    <h2 class="card-title">${employee.name}</h2>
-   
-    <ul class="list-group list-group-flush">
-        <li  class="list-group-item">Name: ${employee.name}</li>
-        <li  class="list-group-item">Designation: ${employee.title}</li>
-        <li  class="list-group-item">Department:${employee.department}</li>
-        </ul>
-        </div>
-        </div>
-    `;
-      } else {
-        employeeDetailsElement.innerHTML = `Employee Not found.`;
-      }
+      const row = document.querySelector("#row");
+
+      const col = document.createElement("div");
+      col.className = "col ";
+
+      const card = document.createElement("card");
+      card.className = "card";
+
+      const cardBody = document.createElement("div");
+      cardBody.className = "card-body";
+
+      const h2 = document.createElement("h2");
+      h2.className = "card-title";
+      h2.textContent = `${employee.name}`;
+
+      const ul = document.createElement("ul");
+      ul.className = "list-group list-group-flush";
+
+      const li1 = document.createElement("li");
+      li1.className = "list-group-item";
+      li1.textContent = `Name: ${employee.name}`;
+
+      const li2 = document.createElement("li");
+      li2.className = "list-group-item";
+      li2.textContent = `Desigination: ${employee.title}`;
+
+      const li3 = document.createElement("li");
+      li3.className = "list-group-item";
+      li3.textContent = `Department: ${employee.department}`;
+
+      ul.appendChild(li1);
+      ul.appendChild(li2);
+      ul.appendChild(li3);
+      cardBody.appendChild(h2);
+      cardBody.appendChild(ul);
+      card.appendChild(cardBody);
+
+      col.appendChild(card);
+      row.appendChild(col);
     </script>
   </body>
 </html>
